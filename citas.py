@@ -2,6 +2,10 @@ import requests
 from bs4 import BeautifulSoup
 import pandas as pd
 
+script_code = """import requests
+from bs4 import BeautifulSoup
+import pandas as pd
+
 url = "https://quotes.toscrape.com/"
 
 response = requests.get(url)
@@ -14,7 +18,7 @@ datos = []
 if citas:
     filas = citas.find_all("div")[1:]
 
-     texto = cita.find("span", class_="text").text.strip()
+        texto = cita.find("span", class_="text").text.strip()
         autor = cita.find("small", class_="author").text.strip()
         tags = ", ".join([tag.text.strip() for tag in cita.find_all("a", class_="tag")])
 
@@ -29,3 +33,7 @@ if citas:
     print("Scraping exitoso y archivo quote.csv creado.")
 else:
     print("No se encontró ninguna tabla en la página")
+"""
+
+with open("citas.py", "w", encoding="utf-8") as f:
+    f.write(script_code)
